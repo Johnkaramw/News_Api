@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "886890617790",
+    "project_id": "john-e28e6",
+    "storage_bucket": "john-e28e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886890617790:android:8e028b8b62f9f7085f77ef",
+        "android_client_info": {
+          "package_name": "com.example.prog_john"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlVVLDeJtTOfo-epCuE3JPTyesqesICzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886890617790:android:27d5ad275e8526665f77ef",
+        "android_client_info": {
+          "package_name": "com.example.test_fir"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlVVLDeJtTOfo-epCuE3JPTyesqesICzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
