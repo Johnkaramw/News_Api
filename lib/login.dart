@@ -3,10 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:prog_john/Homepage.dart';
 import 'package:prog_john/sign.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -15,11 +13,10 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   Future<void> _login() async {
     try {
       // Firebase authentication with email and password
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
@@ -72,6 +69,11 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'assets/help.png',
+              height: 150, // يمكنك تعديل الحجم حسب رغبتك
+            ),
+          const  SizedBox(height: 50,),
             // Email input field
             TextField(
               controller: _emailController,

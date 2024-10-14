@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class profilePage extends StatelessWidget {
-  const profilePage({super.key});
+class FashionPage extends StatelessWidget {
+  const FashionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('Profile'),
+        title: const Text('fashion'),
       ),
     );
   }
