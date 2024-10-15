@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:prog_john/Homepage.dart';
-import 'package:prog_john/login.dart';
+import 'package:prog_john/screens/Homepage.dart';
+import 'package:prog_john/screens/login.dart';
 
 // قم بإدخال معلومات Firebase الخاصة بمشروعك هنا
 FirebaseOptions get firebaseOptions => const FirebaseOptions(

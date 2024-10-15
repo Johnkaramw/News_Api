@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:prog_john/Homepage.dart';
-import 'package:prog_john/login.dart';
+import 'package:prog_john/screens/Homepage.dart';
+import 'package:prog_john/screens/login.dart';
 
 class SignPage extends StatefulWidget {
   const SignPage({super.key});
@@ -162,6 +162,7 @@ class _SignPageState extends State<SignPage> {
               controller: _userController,
               decoration: const InputDecoration(
                 labelText: 'اسم المستخدم',
+                
                 border: OutlineInputBorder(),
               ),
             ),
