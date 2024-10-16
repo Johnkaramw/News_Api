@@ -1,70 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:prog_john/Widget/item.dart';
+import 'package:prog_john/models/item.dart';
+import 'package:prog_john/screens/business.dart';
+import 'package:prog_john/screens/entertainment.dart';
+import 'package:prog_john/screens/health.dart';
+import 'package:prog_john/screens/science.dart';
+import 'package:prog_john/screens/technology.dart';
 import 'package:prog_john/screens/cars.dart';
 import 'package:prog_john/screens/coine.dart';
 import 'package:prog_john/screens/fashion.dart';
-import 'package:prog_john/screens/phons.dart';
-import 'package:prog_john/screens/policy.dart';
-import 'package:prog_john/screens/profilePage.dart';
-import 'package:prog_john/screens/relational.dart';
+import 'package:prog_john/screens/general.dart';
+import 'package:prog_john/screens/sports.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
-  // قائمة العناصر (الاندكس) مع بيانات مثل الصور والعناوين والـ onPressed
-  List<Map<String, dynamic>> get items => [
-        {
-          'title': 'عالم العربيات',
-          'image': 'assets/shopping.png',
-          'page': const CarsPage(),
-        },
-        {
-          'title': 'عالم الموضة',
-          'image': 'assets/clothes.png',
-          'page': const FashionPage(),
-        },
-        {
-          'title': 'عالم العملة',
-          'image': 'assets/bitcoin.png',
-          'page': const CoinePage(), // يمكنك تعديل الصفحة المناسبة
-        },
-        {
-          'title': 'عالم الموبايل',
-          'image': 'assets/phons.png',
-          'page': const PhonsPage(),
-        },
-        {
-          'title': 'عالم السياسة',
-          'image': 'assets/polisy.png',
-          'page': const PolicyPage(),
-        },
-        
-        {
-          'title': 'عالم العلاقات',
-          'image': 'assets/courtship.png',
-          'page': const  RelationalPag(),
-        },
-      ];
-
- 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Homepage'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const profilePage(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.person_3_outlined),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -79,9 +33,11 @@ class Homepage extends StatelessWidget {
                 Row(
                   children: [
                     buildItem(context, items[first]),
-                    const SizedBox(width: 10), // مسافة أفقية بين العناصر داخل الصف
+                    const SizedBox(
+                        width: 10), // مسافة أفقية بين العناصر داخل الصف
                     if (second < items.length)
-                      buildItem(context, items[second]), // عرض العنصر الثاني إن وُجد
+                      buildItem(
+                          context, items[second]), // عرض العنصر الثاني إن وُجد
                   ],
                 ),
                 const SizedBox(height: 20), // مسافة عمودية بين الصفوف
@@ -93,3 +49,57 @@ class Homepage extends StatelessWidget {
     );
   }
 }
+
+// قائمة العناصر (الاندكس) مع بيانات مثل الصور والعناوين والـ onPressed
+List<Map<String, dynamic>> get items => [
+      {
+        'title': 'عالم Cars',
+        'image': 'assets/shopping.png',
+        'page': const CarsPage(),
+      },
+      {
+        'title': 'عالم Fashion',
+        'image': 'assets/clothes.png',
+        'page': const FashionPage(),
+      },
+      {
+        'title': 'عالم Coine',
+        'image': 'assets/bitcoin.png',
+        'page': const CoinePage(), // يمكنك تعديل الصفحة المناسبة
+      },
+      {
+        'title': 'عالم technology',
+        'image': 'assets/technology.png',
+        'page': const TechnologyPage(),
+      },
+      {
+        'title': 'عالم general',
+        'image': 'assets/general.png',
+        'page': const GeneralPage(),
+      },
+      {
+        'title': 'عالم sports',
+        'image': 'assets/balls-sports.png',
+        'page': const SportsPage(),
+      },
+      {
+        'title': 'عالم science',
+        'image': 'assets/data-science.png',
+        'page': const SciencePage(),
+      },
+      {
+        'title': 'عالم   health',
+        'image': 'assets/healthcare.png',
+        'page': const HealthPage(),
+      },
+      {
+        'title': 'عالم   business',
+        'image': 'assets/business.png',
+        'page': const BusinessPage(),
+      },
+      {
+        'title': 'عالم entertainment',
+        'image': 'assets/entertainment.png',
+        'page': const EntertainmentPage(),
+      }
+    ];

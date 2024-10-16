@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:prog_john/screens/Homepage.dart';
 import 'package:prog_john/screens/login.dart';
 
 // قم بإدخال معلومات Firebase الخاصة بمشروعك هنا
@@ -32,7 +31,7 @@ class JohnApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homepage(), // الصفحة الرئيسية
+      home: LoginPage (), // الصفحة الرئيسية
     );
   }
 }

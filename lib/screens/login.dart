@@ -1,34 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:prog_john/Widget/custom_text_field.dart';
 import 'package:prog_john/screens/Homepage.dart';
 import 'package:prog_john/screens/sign.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<void> _login() async {
-    try {
-      // Firebase authentication with email and password
-      await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
 
-      // Navigate to Homepage on successful login
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const Homepage()),
-      );
-    } catch (e) {
-      // Show error message if login fails
-      _showError(e.toString());
+  Future<void> _login() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _auth.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Homepage()),
+        );
+      } catch (e) {
+        _showError(e.toString());
+      }
     }
   }
 
@@ -51,77 +54,81 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'الرجاء إدخال البريد الإلكتروني';
+    }
+    const pattern = r'^[^@]+@[^@]+\.[^@]+';
+    if (!RegExp(pattern).hasMatch(value)) {
+      return 'البريد الإلكتروني غير صحيح';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'الرجاء إدخال كلمة المرور';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Test App',
-            style: TextStyle(
-              fontSize: 20,
-            ),
-          ),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/help.png',
-              height: 150, // يمكنك تعديل الحجم حسب رغبتك
-            ),
-          const  SizedBox(height: 50,),
-            // Email input field
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/help.png',
+                height: 190,
+              ),
+              const SizedBox(height: 60),
+              // استخدام CustomTextField للبريد الإلكتروني
+              CustomTextField(
+                controller: _emailController,
                 labelText: 'البريد الالكتروني',
-                border: OutlineInputBorder(),
+                validator: _validateEmail, // إضافة دالة التحقق
               ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 16),
-            // Password input field
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
+              const SizedBox(height: 16),
+              // استخدام CustomTextField لكلمة المرور
+              CustomTextField(
+                controller: _passwordController,
                 labelText: 'كلمة المرور',
-                border: OutlineInputBorder(),
+                isPassword: true,
+                validator: _validatePassword, // إضافة دالة التحقق
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16),
-            // Login button
-            ElevatedButton(
-              onPressed: _login, // Call the login method when pressed
-              child: const Text('تسجيل الدخول'),
-            ),
-            const SizedBox(height: 16),
-            // Sign-up navigation
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('إن كان ليس لديك حساب، '),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignPage()),
-                    );
-                  },
-                  child: const Text(
-                    'إنشاء حساب',
-                    style: TextStyle(
-                      color: Colors.blue, // Text color for Sign-up
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _login,
+                child: const Text('تسجيل الدخول'),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('إن كان ليس لديك حساب، '),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignPage()),
+                      );
+                    },
+                    child: const Text(
+                      'إنشاء حساب',
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

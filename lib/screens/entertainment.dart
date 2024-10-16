@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prog_john/Widget/news_listview.dart';
 
-class CoinePage extends StatelessWidget {
-  const CoinePage({super.key});
+class EntertainmentPage extends StatelessWidget {
+  const EntertainmentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +11,10 @@ class CoinePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: const _AppBarTitle(),
       ),
-      body: const Padding(
+      body:const Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: CustomScrollView(
-          physics:  BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: const [
             // SliverToBoxAdapter(child: CategoryListView()),
             SliverToBoxAdapter(
@@ -46,7 +46,7 @@ class _AppBarTitle extends StatelessWidget {
             ),
           ),
           Text(
-            'العملة',
+            'ترفيه',
             style: TextStyle(
               color: Color.fromARGB(218, 115, 255, 0),
               fontSize: 35,
